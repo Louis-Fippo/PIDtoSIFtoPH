@@ -1,0 +1,16 @@
+(*paramètres estimés pour les différentes actions des différentes molécules*)
+ET1: activation 0 1 @1~50; activation 1 2 @2~50; inhibition 2 1 @18~50; 
+IL8[er]: activation 0 1 @1~50; activation 1 2 @2~50; inhibition 2 1 @8~50; inhibition 1 0 @18~50;
+IL8[c]: activation 0 1 @1~50; activation 1 2 @2~50; inhibition 2 1 @8~50; inhibition 1 0 @18~50;
+IL8: activation 0 1 @1~50; activation 1 2 @2~50; inhibition 2 1 @12~50; inhibition 1 0 @18~50; 
+TFRC: inhibition 2 1 @1~50; inhibition 1 0 @2~50; activation 0 1 @3~50; inhibition 1 0 @4~50; activation 0 1 @8~50; 
+A20: activation 0 1 @1~50; activation 1 2 @3~50; inhibition 2 1 @6~50; inhibition 1 0 @18~50; 
+HES5: activation 0 1 @2~50; activation 1 2 @3~50; inhibition 2 1 @4~50; activation 1 2 @5~50; inhibition 2 1 @18~50; 
+uPAR: activation 0 1 @1~50; activation 1 2 @3~50; inhibition 2 1 @8~50; 
+uPAR: activation 0 1 @2~50; activation 1 2 @3~50; inhibition 2 1 @8~50; inhibition 1 0 @12~50; activation 0 1 @18~50; 
+IL1 beta: activation 0 1 @2~50; activation 1 2 @3~50; inhibition 2 1 @12~50; inhibition 1 0 @24~50; 
+SM22: activation 0 1 @4~50; activation 1 2 @5~50; inhibition 2 1 @6~50; activation 1 2 @12~50; 
+MKP3{ }: inhibition 1 0 @1~50; activation 0 1 @2~50; activation 1 2 @3~50; inhibition 2 1 @6~50; activation 1 2 @8~50; 
+MKP1: activation 0 1 @2~50; activation 1 2 @3~50; inhibition 2 1 @4~50; activation 1 2 @5~50; inhibition 2 1 @6~50; 
+TNF-a: activation 1 2 @1~50; inhibition 2 1 @6~50; inhibition 1 0 @12~50; 
+DKK1: activation 1 2 @2~50; inhibition 2 1 @3~50; activation 1 2 @4~50; inhibition 2 1 @8~50; inhibition 1 0 @18~50; 
