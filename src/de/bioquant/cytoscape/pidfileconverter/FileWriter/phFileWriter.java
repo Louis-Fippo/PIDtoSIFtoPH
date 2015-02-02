@@ -264,6 +264,7 @@ public final class phFileWriter implements FileWriter,FileWriterBis {
 	                 nodeView2=view.getNodeView(node2);
 	                 nodeView3=view.getNodeView(node3);
 	                 
+	                 	                 
 if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 	    		    	 
 	    		    	 out.write("(*on a un gene mesure*)");
@@ -681,7 +682,7 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 				
 			case 0:{//ici il n'a pas de prédecesseur
 				typPattern.setNumberOfPattern(11);
-				out.write("((*pas de predecesseur*)\n");
+				out.write("(*pas de predecesseur*)\n");
 				return typPattern;
 			}
 			
@@ -942,7 +943,7 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 			}
 			}
 			break;
-			case 2:{ //ici il a un predecesseur
+			case 2:{ //ici il a deux predecesseurs
 				out.write("(*here we have two predecessors *)\n");
 				//on récupère son input edge
 				ArrayList<CyEdge> arcEntrant=(ArrayList<CyEdge>)NetTemp.getAdjacentEdgesList(noeudCour, false, true, false);
@@ -957,7 +958,8 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 				switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 				case 'a':{ //agent edge
 					 
-					 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource(); //a revoir au besoin
+					 CyNode noeudAdj=(CyNode)arcEntrant1.getSource();
 					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
@@ -997,7 +999,8 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end agent edge case
 		
 				case 'i':{ //inhibitor case
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource(); // a revoir 
+					 CyNode noeudAdj=(CyNode)arcEntrant1.getSource();
 					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
@@ -1037,7 +1040,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break; //end inhibitor case
 					
 				case 'p':{ //input case 
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource(); //A revoir
+					 CyNode noeudAdj=(CyNode)arcEntrant1.getSource();
 					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
@@ -1076,7 +1081,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end input case
 					
 				case 'o':{ //output case
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource(); // A revoir
+					 CyNode noeudAdj=(CyNode)arcEntrant1.getSource();
 					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
@@ -1115,7 +1122,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end output case
 					
 				case 'f':{ //isFamilyMemberOf
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource(); // A revoir 
+					 CyNode noeudAdj=(CyNode)arcEntrant1.getSource();
 					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
@@ -1155,7 +1164,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end of isFamilyMemberOf
 					
 				case 'c':{ //isCompMemberOf 
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource(); // A revoir 
+					 CyNode noeudAdj=(CyNode)arcEntrant1.getSource();
 					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
@@ -1220,7 +1231,8 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 				switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 				case 'a':{ //agent edge
 					 
-					 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					 CyNode noeudAdj=(CyNode)arcEntrant1.getSource();
 					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
@@ -1260,8 +1272,10 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end agent edge case
 		
 				case 'i':{ //inhibitor case
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1300,8 +1314,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break; //end inhibitor case
 					
 				case 'p':{ //input case 
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1339,8 +1354,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end input case
 					
 				case 'o':{ //output case
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1378,8 +1394,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end output case
 					
 				case 'f':{ //isFamilyMemberOf
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1418,8 +1435,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end of isFamilyMemberOf
 					
 				case 'c':{ //isCompMemberOf 
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1486,8 +1504,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 				switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 				case 'a':{ //agent edge
 					 
-					 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1526,8 +1545,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end agent edge case
 		
 				case 'i':{ //inhibitor case
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1566,8 +1586,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break; //end inhibitor case
 					
 				case 'p':{ //input case 
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1605,8 +1626,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end input case
 					
 				case 'o':{ //output case
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1644,8 +1666,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end output case
 					
 				case 'f':{ //isFamilyMemberOf
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1684,8 +1707,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end of isFamilyMemberOf
 					
 				case 'c':{ //isCompMemberOf 
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1753,8 +1777,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 				switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 				case 'a':{ //agent edge
 					 
-					 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1793,8 +1818,10 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end agent edge case
 		
 				case 'i':{ //inhibitor case
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1833,8 +1860,10 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break; //end inhibitor case
 					
 				case 'p':{ //input case 
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1872,8 +1901,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end input case
 					
 				case 'o':{ //output case
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -1911,7 +1941,8 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end output case
 					
 				case 'f':{ //isFamilyMemberOf
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					 CyNode noeudAdj=(CyNode)arcEntrant1.getSource();
 					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
@@ -1951,8 +1982,9 @@ if(genesMesures.containsKey(nodeView1.getLabel().getText())){
 					break;//end of isFamilyMemberOf
 					
 				case 'c':{ //isCompMemberOf 
-					CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-					 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+					 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+					CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+					NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 					 
 					 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 					 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2017,7 +2049,7 @@ switch(nombrePred){//test au niveau du nombre de Predecesseur
 
 case 0:{//ici il n'a pas de prédecesseur
 typPattern.setNumberOfPattern(11);
-out.write("((*pas de predecesseur*)\n");
+out.write("(*pas de predecesseur*)\n");
 return typPattern;
 }
 
@@ -2037,8 +2069,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2077,8 +2110,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2117,8 +2151,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2156,8 +2191,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2195,8 +2231,10 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2235,8 +2273,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2293,8 +2332,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2333,8 +2373,10 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2373,8 +2415,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2412,8 +2455,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2451,8 +2495,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2491,8 +2536,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2556,8 +2602,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2596,8 +2643,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2636,8 +2684,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2675,8 +2724,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2714,8 +2764,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2754,8 +2805,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2823,8 +2875,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2863,8 +2916,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2903,8 +2957,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2942,8 +2997,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -2981,8 +3037,10 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3021,8 +3079,10 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3086,8 +3146,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3126,8 +3187,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3166,8 +3228,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3205,8 +3268,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3244,8 +3308,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3284,8 +3349,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3351,7 +3417,7 @@ switch(nombrePred){//test au niveau du nombre de Predecesseur
 
 case 0:{//ici il n'a pas de prédecesseur
 typPattern.setNumberOfPattern(11);
-out.write("((*pas de predecesseur*)\n");
+out.write("(*pas de predecesseur*)\n");
 return typPattern;
 }
 
@@ -3371,8 +3437,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3411,8 +3478,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3451,8 +3519,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3490,8 +3559,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3529,8 +3599,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3569,8 +3640,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3627,8 +3699,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource();
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3667,8 +3740,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3707,8 +3781,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3746,8 +3821,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3785,8 +3861,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3825,8 +3902,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3890,8 +3968,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3930,8 +4009,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -3970,8 +4050,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4009,8 +4090,10 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4048,8 +4131,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4088,8 +4172,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4157,8 +4242,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4197,8 +4283,10 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4237,8 +4325,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4276,8 +4365,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4315,8 +4405,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4355,8 +4446,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4421,8 +4513,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4461,8 +4554,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4501,8 +4595,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4540,8 +4635,10 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4579,8 +4676,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4619,8 +4717,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4688,7 +4787,7 @@ switch(nombrePred){//test au niveau du nombre de Predecesseur
 
 case 0:{//ici il n'a pas de prédecesseur
 typPattern.setNumberOfPattern(11);
-out.write("((*pas de predecesseur*)\n");
+out.write("(*pas de predecesseur*)\n");
 return typPattern;
 }
 
@@ -4708,8 +4807,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4748,8 +4848,10 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4788,8 +4890,10 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4827,8 +4931,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4866,8 +4971,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4906,8 +5012,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -4964,8 +5071,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5004,8 +5112,10 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5044,8 +5154,10 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5083,8 +5195,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5122,8 +5235,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5162,8 +5276,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5227,8 +5342,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	// CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5267,8 +5383,10 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5307,8 +5425,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5346,8 +5465,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5385,8 +5505,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5425,8 +5546,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5489,8 +5611,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5529,8 +5652,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5569,8 +5693,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5608,8 +5733,10 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5647,8 +5774,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5687,8 +5815,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5752,8 +5881,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5792,8 +5922,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5832,8 +5963,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5871,8 +6003,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5910,8 +6043,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -5950,8 +6084,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6021,7 +6156,7 @@ switch(nombrePred){//test au niveau du nombre de Predecesseur
 
 case 0:{//ici il n'a pas de prédecesseur
 typPattern.setNumberOfPattern(11);
-out.write("((*pas de predecesseur*)\n");
+out.write("(*pas de predecesseur*)\n");
 return typPattern;
 }
 
@@ -6041,8 +6176,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6081,8 +6217,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6121,8 +6258,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6160,8 +6298,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6199,8 +6338,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6239,8 +6379,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6297,8 +6438,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6337,8 +6479,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6377,8 +6520,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6416,8 +6560,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6455,8 +6600,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6495,8 +6641,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6560,8 +6707,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6600,8 +6748,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6640,8 +6789,9 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6679,8 +6829,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6718,8 +6869,9 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6758,8 +6910,9 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6822,8 +6975,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6862,8 +7016,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6902,8 +7057,10 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6941,8 +7098,9 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -6980,8 +7138,10 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7020,8 +7180,10 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7085,8 +7247,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7125,8 +7288,10 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7165,8 +7330,10 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7204,8 +7371,10 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7243,8 +7412,10 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7283,8 +7454,10 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7351,7 +7524,7 @@ switch(nombrePred){//test au niveau du nombre de Predecesseur
 
 case 0:{//ici il n'a pas de prédecesseur
 typPattern.setNumberOfPattern(11);
-out.write("((*pas de predecesseur*)\n");
+out.write("(*pas de predecesseur*)\n");
 return typPattern;
 }
 
@@ -7371,8 +7544,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 // CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7411,8 +7585,10 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7451,8 +7627,10 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7490,8 +7668,10 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7529,8 +7709,10 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7569,8 +7751,10 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7627,8 +7811,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7667,8 +7852,10 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7707,8 +7894,10 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7746,8 +7935,10 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7785,8 +7976,10 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7825,8 +8018,10 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7890,8 +8085,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7922,8 +8118,10 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7954,8 +8152,10 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -7985,8 +8185,10 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8016,8 +8218,10 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8048,8 +8252,10 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8104,8 +8310,9 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 // CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8136,8 +8343,10 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8168,8 +8377,10 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	//CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8199,8 +8410,10 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8230,8 +8443,10 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	//CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8262,8 +8477,10 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8318,9 +8535,11 @@ typeEdge1=typeEdge(Cytoscape.getEdgeAttributes().getAttribute(arcEntrant1.getIde
 //here we will treated each edge
 switch(typeEdge1){ //test au niveau du type des arcs ou des interactions ce qui donne un nouveau numéro au pattern
 case 'a':{ //agent edge
+	
 	 
-	 CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	// CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8351,8 +8570,9 @@ case 'a':{ //agent edge
 	break;//end agent edge case
 
 case 'i':{ //inhibitor case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8383,8 +8603,10 @@ case 'i':{ //inhibitor case
 	break; //end inhibitor case
 	
 case 'p':{ //input case 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8414,8 +8636,10 @@ case 'p':{ //input case
 	break;//end input case
 	
 case 'o':{ //output case
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8445,8 +8669,10 @@ case 'o':{ //output case
 	break;//end output case
 	
 case 'f':{ //isFamilyMemberOf
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
@@ -8478,8 +8704,10 @@ case 'f':{ //isFamilyMemberOf
 	break;//end of isFamilyMemberOf
 	
 case 'c':{ //isCompMemberOf 
-	CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
-	 NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
+	
+	 //CyNode noeudAdj=(CyNode)arcEntrant.get(0).getSource();
+	CyNode noeudAdj=(CyNode)arcEntrant1.getSource(); 
+	NodeOfPattern NoPAdj=new NodeOfPattern(noeudAdj,111);
 	 
 	 //il faut vérifier la condition d'arrêt: si c'est un noeud terminal 
 	 char typeNodeInt=typeNode(Cytoscape.getNodeAttributes().getAttribute(noeudAdj.getIdentifier(), Cytoscape.getNodeAttributes().getAttributeNames()[7]).toString());
